@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kutis Libron</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-light-pink: #FDF3F6;
+            --pink-accent: #FF52A8;
+            --text-dark: #2A2A2A;
+            --text-gray: #777777;
+            --card-border: #EADBDC;
+            --font-serif: 'Bodoni Moda', serif;
+            --font-sans: 'Montserrat', sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-light-pink);
+            font-family: var(--font-sans);
+            color: var(--text-dark);
+            line-height: 1.4;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* --- STICKY NAVBAR --- */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background-color: #FDF0F3;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px 20px;
+            border-bottom: 1px solid rgba(0,0,0,0.03);
+        }
+
+        .menu-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            width: 28px;
+        }
+
+        .menu-btn span {
+            display: block;
+            height: 2px;
+            width: 100%;
+            background-color: #7D6329;
+            border-radius: 2px;
+        }
+
+        .nav-logo {
+            font-family: var(--font-serif);
+            font-size: 1.5rem;
+            color: var(--pink-accent);
+            text-decoration: none;
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+
+        .nav-icons {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .icon-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #7D6329;
+        }
+
+        /* --- HERO BANNER --- */
+        .hero {
+            position: relative;
+            width: 100%;
+            height: 65vh;
+            min-height: 380px;
+            background: url('12095.png') center/cover no-repeat;
+            display: flex;
+            align-items: flex-end;
+            padding: 25px;
+        }
+
+        .hero-brand {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-brand .title-main {
+            font-family: var(--font-serif);
+            font-size: 3.8rem;
+            font-weight: 600;
+            color: var(--pink-accent);
+            line-height: 0.85;
+        }
+
+        .hero-brand .title-sub {
+            font-family: var(--font-sans);
+            font-size: 1.3rem;
+            font-weight: 500;
+            color: var(--pink-accent);
+            letter-spacing: 4px;
+            margin-left: 50px;
+            margin-top: 5px;
+        }
+
+        .hero-brand .tagline {
+            font-family: var(--font-sans);
+            font-size: 0.85rem;
+            font-weight: 400;
+            letter-spacing: 3px;
+            color: #FFFFFF;
+            margin-top: 18px;
+            margin-left: 50px;
+            text-transform: uppercase;
+        }
+
+        /* --- PRODUCTS & FILTERS SECTION --- */
+        .products-section {
+            padding: 30px 15px 50px 15px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .section-subtitle {
+            font-size: 0.65rem;
+            letter-spacing: 3px;
+            color: var(--text-dark);
+            text-transform: uppercase;
+            margin-bottom: 2px;
+        }
+
+        .section-title {
+            font-family: var(--font-sans);
+            font-size: 1.5rem;
+            font-weight: 400;
+            color: var(--pink-accent);
+            letter-spacing: 3px;
+        }
+
+        .filter-bar {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 8px 15px;
+            font-size: 0.75rem;
+            margin-bottom: 30px;
+            color: var(--text-dark);
+        }
+
+        .filter-dropdown {
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .filter-categories {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-gray);
+        }
+
+        .filter-categories span.active {
+            color: var(--pink-accent);
+            font-weight: 500;
+        }
+
+        /* --- PRODUCT GRID --- */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px 20px;
+        }
+
+        .product-card:nth-child(3) {
+            grid-column: 1 / -1;
+            justify-self: center;
+            width: calc(50% - 10px);
+        }
+
+        .card-frame {
+            border: 1px solid var(--card-border);
+            background-color: #FFFFFF;
+            aspect-ratio: 1 / 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.01);
+        }
+
+        .card-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .product-info {
+            text-align: center;
+            margin-top: 12px;
+        }
+
+        .product-title {
+            font-size: 0.75rem;
+            font-weight: 400;
+            color: var(--text-dark);
+            line-height: 1.3;
+            margin-bottom: 6px;
+        }
+
+        .price-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-family: var(--font-sans);
+        }
+
+        .current-price {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+
+        .original-price {
+            font-size: 0.75rem;
+            color: var(--text-gray);
+            text-decoration: line-through;
+        }
+
+        /* --- FEATURES / CLINICAL LIST SECTION --- */
+        .features-section {
+            background-color: var(--bg-light-pink);
+            padding: 40px 20px 60px 20px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .feature-item {
+            margin-bottom: 25px;
+        }
+
+        .feature-number {
+            font-size: 0.85rem;
+            color: var(--text-dark);
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .feature-box {
+            background-color: #FFFFFF;
+            padding: 20px;
+            border-radius: 2px;
+        }
+
+        .feature-title {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-dark);
+            margin-bottom: 6px;
+        }
+
+        .feature-text {
+            font-size: 0.8rem;
+            color: var(--text-dark);
+            line-height: 1.4;
+        }
+
+        /* Mobile adjustments */
+        @media (max-width: 600px) {
+            .product-card:nth-child(3) {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- STICKY TOP NAVBAR -->
+    <nav class="navbar">
+        <button class="menu-btn" aria-label="Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <a href="#" class="nav-logo">Kutis L I B R O N</a>
+        <div class="nav-icons">
+            <button class="icon-btn" aria-label="Search">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            </button>
+            <button class="icon-btn" aria-label="Shopping Bag">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- HERO BANNER -->
+    <header class="hero">
+        <div class="hero-brand">
+            <h1 class="title-main">Kutis</h1>
+            <div class="title-sub">L I B R O N</div>
+            <div class="tagline">FACE & BODY</div>
+        </div>
+    </header>
+
+    <!-- PRODUCTS SECTION -->
+    <main class="products-section">
+        <div class="section-header">
+            <p class="section-subtitle">EXPLORE OUR</p>
+            <h2 class="section-title">PRODUCTS</h2>
+        </div>
+
+        <div class="filter-bar">
+            <span class="filter-dropdown">FILTER BY &#9662;</span>
+            <span class="filter-dropdown">SORT BY &#9662;</span>
+            <div class="filter-categories">
+                <span class="active">Face & Body lotion</span> |
+                <span>Cleanser</span> |
+                <span>Serum & Treatment</span> |
+                <span>Moisturizer</span> |
+                <span>Sunscreen</span>
+            </div>
+        </div>
+
+        <div class="product-grid">
+
+            <!-- Product 1 -->
+            <div class="product-card">
+                <div class="card-frame">
+                    <img src="12090.png" alt="Kutis Libron Bakuchiol + Peptides">
+                </div>
+                <div class="product-info">
+                    <p class="product-title">Kutis Libron Whitening Lotion Serum face & Body Bakuchiol + Peptides 200mL</p>
+                    <div class="price-container">
+                        <span class="current-price">&#8369; 199.00</span>
+                        <span class="original-price">&#8369;279.00</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 2 -->
+            <div class="product-card">
+                <div class="card-frame">
+                    <img src="12091.png" alt="Kutis Libron Niacinamide + Arbutin">
+                </div>
+                <div class="product-info">
+                    <p class="product-title">Kutis Libron Whitening Lotion Serum face & Body Niacinamide + Arbutin SPF 25 200mL</p>
+                    <div class="price-container">
+                        <span class="current-price">&#8369; 199.00</span>
+                        <span class="original-price">&#8369;279.00</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 3 -->
+            <div class="product-card">
+                <div class="card-frame">
+                    <img src="12092.png" alt="Kutis Libron Tranexamic + Vitamin C">
+                </div>
+                <div class="product-info">
+                    <p class="product-title">Kutis Libron Whitening Lotion Serum face & Body Bakuchiol + Peptides 200mL</p>
+                    <div class="price-container">
+                        <span class="current-price">&#8369; 199.00</span>
+                        <span class="original-price">&#8369;279.00</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- CLINICAL FEATURES SECTION -->
+    <section class="features-section">
+        
+        <div class="feature-item">
+            <span class="feature-number">&mdash; 01</span>
+            <div class="feature-box">
+                <h3 class="feature-title">Molecular Precision</h3>
+                <p class="feature-text">Each formula is engineered at the molecular level with active concentrations validated through clinical trials.</p>
+            </div>
+        </div>
+
+        <div class="feature-item">
+            <span class="feature-number">&mdash; 02</span>
+            <div class="feature-box">
+                <h3 class="feature-title">Clinical Validation</h3>
+                <p class="feature-text">Every product undergoes rigorous dermatological testing. Results are measured, not marketed.</p>
+            </div>
+        </div>
+
+        <div class="feature-item">
+            <span class="feature-number">&mdash; 03</span>
+            <div class="feature-box">
+                <h3 class="feature-title">Sterile Formulation</h3>
+                <p class="feature-text">Manufactured in controlled laboratory environments to ensure purity and efficacy in every batch.</p>
+            </div>
+        </div>
+
+    </section>
+
+</body>
+</html>
